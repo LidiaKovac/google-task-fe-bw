@@ -4,6 +4,7 @@ import "./Modal.css";
 export const Modal = ({ isOpen, close, type, planners }) => {
   const [select, setSelect] = useState([]);
   const [task, newTask] = useState("");
+
   const handleAddTask = (event) => {
     console.log(event.key);
     if (event.key === "Enter") {

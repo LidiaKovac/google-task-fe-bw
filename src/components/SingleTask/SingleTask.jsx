@@ -1,6 +1,7 @@
 import "./SingleTask.css"
 import { BsCircle, BsCheckCircle } from "react-icons/bs"
 import { useEffect, useState } from "react"
+
 export const SingleTask = ({ content, id, setDone }) => {
   const [isChecked, setChecked] = useState(false)
   const [singleTask, setSingleTask] = useState([])
@@ -9,12 +10,12 @@ export const SingleTask = ({ content, id, setDone }) => {
     try {
       let response = await fetch(`%{process.env.REACT_APP_BE_PROD_URL}/tasks`);
       if (response.ok) {
-        let singleTask = await response.json()
-        setSingleTask(singleTask)   
+        let singleTaskData = await response.json()
+        setSingleTask(singleTaskData)   
       }
     } catch (error) {
       console.log(error)
-    }x
+    }
   }
 
   useEffect(()=> {

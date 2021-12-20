@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { BsJournalPlus } from "react-icons/bs";
@@ -15,9 +15,10 @@ function App() {
 
   const fetchPlanners = async () => {
     try {
-      const plannerData = await fetch("https://google-task-backend-strive.herokuapp.com/planners")
+      const response = await fetch("https://google-task-backend-strive.herokuapp.com/planners")
       if (response.ok) {
-        let data = await plannerData.json();
+        let data = await response.json();
+        console.log(data);
         setPlanners(data);
       }
     } catch (error) {
@@ -25,6 +26,9 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    fetchPlanners();
+  }, [])
 
   return (
     <>
