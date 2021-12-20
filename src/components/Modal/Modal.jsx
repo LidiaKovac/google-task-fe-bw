@@ -26,7 +26,7 @@ export const Modal = ({ isOpen, close, type, planners }) => {
   const handleAddPlanner = async (event) => {
     console.log(event.key);
     if (event.key === "Enter") {
-      addNewPlanner()
+      addNewPlanner(event);
       close();
     }
   };
