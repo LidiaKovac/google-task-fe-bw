@@ -5,28 +5,33 @@ export const Modal = ({ isOpen, close, type, planners }) => {
   const [select, setSelect] = useState([]);
   const [task, newTask] = useState("");
 
+  const addNewPlanner = async () => {
+    try {
+      let response = await fetch("https://google-task-backend-strive.herokuapp.com/tasks/:id", {
+        method: "POST",
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const handleAddTask = async (event) => {
     console.log(event.key);
     if (event.key === "Enter") {
       const postNewTask = await fetch("https://google-task-backend-strive.herokuapp.com/tasks/:id", { 
         method: "POST",
       })
+      addNewPlanner();
       close();
     } else {
       newTask(event.target.value);
     }
   };
-  const handleAddPlanner = (event) => {
+  const handleAddPlanner = async (event) => {
     console.log(event.key);
     if (event.key === "Enter") {
-      const postNewPlanner = async () => {
-        try {
           const newPlanner = await fetch("https://google-task-backend-strive.herokuapp.com/planners", {
             method: "POST",
           })
-        } catch (error) {
-          console.log(error)
-        }
       }
       close();
     }
