@@ -7,6 +7,17 @@ export const Dropdown = ({ fetchSelPlanner, planners }) => {
   const [selected, setSelected] = useState({});
   // const [planners, setPlanners] = useState([]);
 
+  const fetchPlanners = async () => {
+    try {
+      let response = await fetch("https://google-task-backend-strive.herokuapp.com/planners")
+      if (response.ok) {
+        let plannerData = await response.json();
+        setPlanners(plannerData);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     fetchSelPlanner(selected?.tasks, selected?.id || "");
   }, [selected]);
