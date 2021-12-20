@@ -13,6 +13,17 @@ function App() {
   const [openPlanner, setOpenPlanner] = useState(false);
   const [selected, setSelected] = useState("");
 
+  const fetchPlanners = async () => {
+    try {
+      const plannerData = await fetch("https://google-task-backend-strive.herokuapp.com/planners")
+      if (response.ok) {
+        let data = await plannerData.json();
+        setPlanners(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   return (

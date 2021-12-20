@@ -5,22 +5,23 @@ import "./Dropdown.css";
 export const Dropdown = ({ fetchSelPlanner, planners }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
-  // const [planners, setPlanners] = useState([]);
 
   const fetchPlanners = async () => {
     try {
       let response = await fetch("https://google-task-backend-strive.herokuapp.com/planners")
       if (response.ok) {
-        let plannerData = await response.json();
-        setPlanners(plannerData);
+        let planners = await response.json();
+        console.log(planners);
       }
     } catch (error) {
       console.log(error);
     }
   }
+
   useEffect(() => {
     fetchSelPlanner(selected?.tasks, selected?.id || "");
   }, [selected]);
+
   return (
     <>
       <div
