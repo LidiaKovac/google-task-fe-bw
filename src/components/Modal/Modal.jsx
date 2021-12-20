@@ -7,7 +7,7 @@ export const Modal = ({ isOpen, close, type, planners }) => {
 
   const addNewPlanner = async () => {
     try {
-      let response = await fetch("https://google-task-backend-strive.herokuapp.com/planner", {
+      let response = await fetch("https://google-task-backend-strive.herokuapp.com/planners", {
         method: "POST",
       })
     } catch (error) {
