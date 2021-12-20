@@ -7,7 +7,7 @@ export const Modal = ({ isOpen, close, type, planners }) => {
 
   const addNewPlanner = async () => {
     try {
-      let response = await fetch("https://google-task-backend-strive.herokuapp.com/tasks/:id", {
+      let response = await fetch("https://google-task-backend-strive.herokuapp.com/planner", {
         method: "POST",
       })
     } catch (error) {
@@ -17,10 +17,7 @@ export const Modal = ({ isOpen, close, type, planners }) => {
   const handleAddTask = async (event) => {
     console.log(event.key);
     if (event.key === "Enter") {
-      const postNewTask = await fetch("https://google-task-backend-strive.herokuapp.com/tasks/:id", { 
-        method: "POST",
-      })
-      addNewPlanner();
+      
       close();
     } else {
       newTask(event.target.value);
@@ -29,10 +26,7 @@ export const Modal = ({ isOpen, close, type, planners }) => {
   const handleAddPlanner = async (event) => {
     console.log(event.key);
     if (event.key === "Enter") {
-          const newPlanner = await fetch("https://google-task-backend-strive.herokuapp.com/planners", {
-            method: "POST",
-          })
-      }
+      addNewPlanner()
       close();
     }
   };
