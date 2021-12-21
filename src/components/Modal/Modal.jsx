@@ -16,7 +16,6 @@ export const Modal = ({ isOpen, close, type, planners }) => {
           planners,
         }),
       });
-      
     } catch (error) {
       console.log(error);
     }

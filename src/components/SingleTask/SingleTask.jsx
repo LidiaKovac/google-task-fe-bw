@@ -3,6 +3,7 @@ import { BsCircle, BsCheckCircle } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "../Modal/Modal.css";
+import { useNavigate } from "react-router-dom";
 
 export const SingleTask = ({ content, id, setDone }) => {
   const [isChecked, setChecked] = useState(false);
@@ -34,7 +35,7 @@ export const SingleTask = ({ content, id, setDone }) => {
     }
   }, [isChecked]);
 
-  const updateTask = async () => {
+  const updateTask = async (event) => {
     try {
       let response = await fetch(`https://google-task-backend-strive.herokuapp.com/tasks/${id}`, {
         method: "PUT",
@@ -42,10 +43,9 @@ export const SingleTask = ({ content, id, setDone }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content,
+          content: event.target.value,
         }),
       });
-
       if (response.ok) {
         console.log("Task updated");
       }
@@ -68,20 +68,19 @@ export const SingleTask = ({ content, id, setDone }) => {
         </Button>
         <Button variant="danger">Delete</Button>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body>
+      <Modal className="modal__bg" show={show} onHide={handleClose}>
+        <Modal.Body className="modal__inner">
           <h2>Update task</h2>
           <small>Press enter to update</small>
           <input type="text" onKeyUp={(e) => updateTask(e)} />
-        </Modal.Body>
-        <Modal.Footer>
+
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={updateTask()}>
             Save Changes
           </Button>
-        </Modal.Footer>
+        </Modal.Body>
       </Modal>
     </>
   );
