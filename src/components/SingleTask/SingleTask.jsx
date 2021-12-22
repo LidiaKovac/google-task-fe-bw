@@ -3,10 +3,10 @@ import { BsCircle, BsCheckCircle } from "react-icons/bs"
 import { useEffect, useState } from "react"
 export const SingleTask = ({ content, id, setDone }) => {
   const [isChecked, setChecked] = useState(false)
-  useEffect(()=> {
-    if(isChecked) { //if the task has been marked as done
-      setTimeout(()=> {
-        setDone(id)
+  useEffect(() => {
+    if (isChecked) { //if the task has been marked as done
+      setTimeout(() => {
+        setDone(id, isChecked)
       }, 500)
       console.log("isChecked");
     }
